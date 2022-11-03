@@ -1,0 +1,140 @@
+<!-- Titulo de la sección -->
+<br>
+<section id="actions" class="py-4 mb-4 bg-light text-center">
+ <div class="titulo">
+    <h2>Tabla de Productos</h2>
+ </div>
+</section>
+
+
+<!-- Listado Clientes -->
+<section id="productos" >
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Lista de Productos</h4>
+                    </div>
+                    <table class="table table-dark table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre Producto</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let producto of productos; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{producto.nombre}}  </td>
+                                <td>{{producto.cantidad}} </td>
+                                <td> {{producto.precio | currency:'MXN':'$' }} </td>
+                                <td>
+                                    <a routerLink="/producto/editar/{{producto.id}}" class="btn btn-light" >
+                                        <i class="fas fa-angle-double-right">Editar</i>                                      
+                                    </a>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Botones -->
+<section id="actions" class="py-4 mb-4 bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="#" class="btn btn-primary btn-block" data-bs-toggle="modal" data-bs-target="#agregarProductoModal">
+                    <i class="fas fa-plus"></i>Agregar Producto
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Agregamos ventana Modal -->
+<div class="modal fade" id="agregarProductoModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Agregar Producto </h5>
+                <button class="close" data-bs-dismiss="modal" #botonCerrar>
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <flash-messages></flash-messages>
+
+
+            <form #productoForm="ngForm" (ngSubmit)="agregar(productoForm.form)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Producto</label>
+                        <input 
+                        type="text" 
+                        name="nombre" 
+                        class="form-control"
+                        #nombre="ngModel"
+                        [(ngModel)]="producto.nombre" 
+                        [ngClass]="{ 'is-invalid': nombre.errors && nombre.touched }"
+                        required
+                        minlength="2">
+                        <div [hidden]="!nombre.errors?.['required']" class="invalid-feedback">
+                            Nombre requerido
+                        </div> 
+                        <div [hidden]="!nombre.errors?.['minlength']" class="invalid-feedback">
+                            Debe contener al menos 2 caractéres 
+                        </div> 
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad</label>
+                        <input 
+                        type="number"
+                         name="cantidad" 
+                         class="form-control"
+                         #cantidad="ngModel"
+                         [(ngModel)]="producto.cantidad" 
+                         [ngClass]="{ 'is-invalid': cantidad.errors && cantidad.touched }"
+                         required>
+                         <div [hidden]="!cantidad.errors?.['required']" class="invalid-feedback">
+                             Cantidad requerido
+                         </div> 
+                    </div>
+
+                    <div class="form-group">
+                        <label for="precio">Precio</label>
+                        <input 
+                        type="number" 
+                        name="precio" 
+                        class="form-control"
+                        #precio="ngModel"
+                        [(ngModel)]="producto.precio" 
+                        [ngClass]="{ 'is-invalid': precio.errors && precio.touched }"
+                        required>
+                        <div [hidden]="!precio.errors?.['required']" class="invalid-feedback">
+                            Precio requerido
+                        </div> 
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
