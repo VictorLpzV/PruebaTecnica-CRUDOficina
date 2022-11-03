@@ -8,6 +8,7 @@ Realizar un CRUD donde el tema sea de productos de oficina, debe poder almacenar
 
 ## Funcionalidades del proyecto
 
+- `Control de productos`: El usuario puede visualizar los productos mediante una tabla que podrá manipular, editando, eliminando o agregando más productos 
 - `Agregar un producto`: El usuario puede agregar cualquier producto de oficina a la lista de los productos
 - `Editar un producto`: El usuario puede editar y actualizar el contenido de un producto 
 - `Eliminar un producto`: El usuario puede eliminar un producto y se actualizará la base de datos.
