@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Funciones básicas de la plataforma
+
+Agregar un producto
+Editar un producto
+Eliminar un producto
+Iniciar Seción con correo y contraseña (Correo:  Usuario1@gmail.com Contraseña: 123456)
